@@ -1,52 +1,51 @@
 #!/usr/bin/env python3
 
-# Import der benötigten Bibliotheken
 import gi
-gi.require_version('Gtk', '3.0')  # Erfordert die Gtk-Version 3.0
-gi.require_version('AppIndicator3', '0.1')  # Erfordert die AppIndicator3-Version 0.1
+gi.require_version('Gtk', '3.0')  # Requires Gtk version 3.0
+gi.require_version('AppIndicator3', '0.1')  # Requires AppIndicator3 version 0.1
 from gi.repository import Gtk, AppIndicator3
-import base64
+import subprocess
 
-# Funktion zum Ein- oder Ausschalten des Bildschirmschoners
+screensaver_enabled = False
+
 def toggle_screensaver(widget):
-    # Hier wird der Code zum Ein- oder Ausschalten des Bildschirmschoners eingefügt
-    print("bla")  # Einfacher Ausdruck zum Testen, wird durch den eigentlichen Code ersetzt
-    pass
+    global screensaver_enabled
 
-# Funktion zum Erstellen des Menüs
+    if screensaver_enabled:
+        # Set the screensaver delay to 15 minutes
+        subprocess.run(['gsettings', 'set', 'org.cinnamon.desktop.session', 'idle-delay', '900'])
+        screensaver_enabled = False
+    else:
+        # Set the screensaver delay to 0 (disabled)
+        subprocess.run(['gsettings', 'set', 'org.cinnamon.desktop.session', 'idle-delay', '0'])
+        screensaver_enabled = True
+
 def build_menu():
     menu = Gtk.Menu()
 
-    # Menüelement zum Aktivieren/Deaktivieren des Bildschirmschoners
-    screensaver_item = Gtk.CheckMenuItem('Screensaver aktivieren')
-    screensaver_item.connect('activate', toggle_screensaver)  # Verknüpfung mit der Funktion zum Ein- oder Ausschalten des Bildschirmschoners
+    screensaver_item = Gtk.CheckMenuItem('Toggle Screensaver')
+    screensaver_item.connect('activate', toggle_screensaver)  # Connect toggle_screensaver function to the menu item
     menu.append(screensaver_item)
 
-    # Menüelement zum Beenden des Programms
-    quit_item = Gtk.MenuItem('Beenden')
-    quit_item.connect('activate', Gtk.main_quit)  # Verknüpfung mit der Gtk-Funktion zum Beenden des Programms
+    quit_item = Gtk.MenuItem('Quit')
+    quit_item.connect('activate', Gtk.main_quit)  # Connect Gtk.main_quit function to the menu item
     menu.append(quit_item)
 
     menu.show_all()
     return menu
 
-# Hauptfunktion des Programms
 def main():
-
-     # Das Bild als Bytes im Code speichern
     image_data = b'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAABlJREFU\nOMtjYBhggC8AAxUAj1sKIPAPQBHFAKPCuBrxgAHgTgCGYpgCUEUGAMAYEpK4Xw6MwAAAAASUVORK5C\nYII='
 
-    # Erstellen eines App-Indikators
     indicator = AppIndicator3.Indicator.new(
         'screensaver-indicator',
-        '/home/michael/Repository/Teeinit/123.png',  # Pfad zum Symbolbild des Indikators
+        '/home/michael/Repository/Teeinit/123.png',  # Path to the indicator's symbol image
         AppIndicator3.IndicatorCategory.APPLICATION_STATUS
     )
-    indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)  # Indikatorstatus auf aktiv setzen
-    indicator.set_menu(build_menu())  # Menü des Indikators erstellen
+    indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)  # Set the indicator status to active
+    indicator.set_menu(build_menu())  # Create the indicator's menu
 
-    Gtk.main()  # Hauptschleife der Gtk-Anwendung starten
+    Gtk.main()  # Start the main Gtk event loop
 
-# Überprüfung, ob das Skript direkt ausgeführt wird
 if __name__ == '__main__':
-    main()  # Aufruf der Hauptfunktion
+    main()  # Call the main function if the script is executed directly
