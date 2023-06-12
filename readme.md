@@ -2,6 +2,8 @@
 
 This Python script provides a simple graphical interface to toggle the screensaver on and off in a Linux Mint Cinnamon environment. It uses GTK and AppIndicator3 libraries to create a system tray icon that allows the user to enable or disable the screensaver with a click.
 
+![Peek 2023-06-11 12-35](https://github.com/Gk1mtd/Teainit/assets/15696019/01bc4ebf-e3f3-48fc-9235-a8a3fe7edfc5)
+
 ## Prerequisites
 
 Make sure you have the following dependencies installed:
