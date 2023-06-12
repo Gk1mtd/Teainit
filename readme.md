@@ -14,7 +14,9 @@ Make sure you have the following dependencies installed:
 ## Installation
 
 1. Clone the repository or download the script file `screensaver_toggle.py` to your local machine.
-2. install required packages: 'sudo apt-get install python3 python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1'
+2. install required packages: '''bash
+sudo apt-get install python3 python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1
+'''
 3. Open a terminal and navigate to the directory where the script is located.
 4. Add it to your Start Applications, if you want
 
