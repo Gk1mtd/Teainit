@@ -42,6 +42,7 @@ def save_image_to_file():
         file.write(image_bytecode)
 
 def main():
+    subprocess.run(['gsettings', 'set', 'org.cinnamon.desktop.session', 'idle-delay', '900'])
     save_image_to_file()
     indicator = AppIndicator3.Indicator.new(
         'teeinit-indicator',
