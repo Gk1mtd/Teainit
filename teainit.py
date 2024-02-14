@@ -15,9 +15,11 @@ def toggle_screensaver(widget):
 
     if screensaver_enabled:
         subprocess.run(['gsettings', 'set', 'org.cinnamon.desktop.session', 'idle-delay', '900'])
+        subprocess.run(['gsettings', 'set', 'org.cinnamon.settings-daemon.plugins.power', 'sleep-inactive-ac-timeout', '7200'])
         screensaver_enabled = False
     else:
         subprocess.run(['gsettings', 'set', 'org.cinnamon.desktop.session', 'idle-delay', '0'])
+        subprocess.run(['gsettings', 'set', 'org.cinnamon.settings-daemon.plugins.power', 'sleep-inactive-ac-timeout', '0'])
         screensaver_enabled = True
 
 # buidls menu
