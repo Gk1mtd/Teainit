@@ -45,6 +45,7 @@ def save_image_to_file():
 
 def main():
     subprocess.run(['gsettings', 'set', 'org.cinnamon.desktop.session', 'idle-delay', '900'])
+    subprocess.run(['gsettings', 'set', 'org.cinnamon.settings-daemon.plugins.power', 'sleep-inactive-ac-timeout', '7200'])
     save_image_to_file()
     indicator = AppIndicator3.Indicator.new(
         'teeinit-indicator',
