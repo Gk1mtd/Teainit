@@ -13,7 +13,7 @@ Make sure you have the following dependencies installed:
 
 ## Installation
 
-1. Clone the repository or download the script file `screensaver_toggle.py` to your local machine.
+1. Clone the repository or download the script file `teainit.py` to your local machine.
 2. install required packages:
 ```bash
 sudo apt-get install python3 python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1
@@ -26,7 +26,7 @@ sudo apt-get install python3 python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1
 To run the script, execute the following command in the terminal:
 
 ```shell
-python3 screensaver_toggle.py
+python3 teainit.py
 ```
 
 Once the script is running, you will see a system tray icon appear. Clicking on the icon will show the menu, to toggle the screensaver on or off. When the toggle is enabled, the system will not go into screensaver mode. teainit will change the screensaver time to "never". When the toggle is disabled, the screensaver time will set to 15 minutes.
@@ -36,5 +36,5 @@ To quit the script, right-click on the system tray icon and select "Quit" from t
 ## Notes
 
 - This script assumes a Linux environment with the Cinnamon desktop environment. If you are using a different desktop environment, you may need to modify the `org.cinnamon.desktop.session` value in the `toggle_screensaver` function.
-- The script saves a placeholder image (`teeinit.png`) in the `/tmp` directory. You can replace this image with your own icon by modifying the `save_image_to_file` function.
+- The script saves a placeholder image (`teainit.png`) in the `/tmp` directory. You can replace this image with your own icon by modifying the `save_image_to_file` function.
 - The script requires appropriate permissions to modify the screensaver settings. Make sure you have the necessary privileges to run the `gsettings` commands. Might work for any user though.
